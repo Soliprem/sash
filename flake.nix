@@ -22,12 +22,26 @@
       default = ags.lib.bundle {
         inherit pkgs;
         src = ./.;
-        name = "my-shell";
+        name = "sash";
         entry = "app.ts";
 
         # additional libraries and executables to add to gjs' runtime
         extraPackages = [
-          # ags.packages.${system}.battery
+          ags.packages.${system}.battery
+          ags.packages.${system}.bluetooth
+          ags.packages.${system}.notifd
+          ags.packages.${system}.mpris
+          ags.packages.${system}.powerprofiles
+          ags.packages.${system}.tray
+          ags.packages.${system}.wireplumber
+          ags.packages.${system}.auth
+          ags.packages.${system}.network
+          ags.packages.${system}.cava
+          ags.packages.${system}.greet
+          ags.packages.${system}.hyprland
+          ags.packages.${system}.river
+          ags.packages.${system}.apps
+          pkgs.playerctl
           # pkgs.fzf
         ];
       };
@@ -39,7 +53,21 @@
           # includes astal3 astal4 astal-io by default
           (ags.packages.${system}.default.override {
             extraPackages = [
-              # cherry pick packages
+              ags.packages.${system}.battery
+              ags.packages.${system}.bluetooth
+              ags.packages.${system}.notifd
+              ags.packages.${system}.mpris
+              ags.packages.${system}.powerprofiles
+              ags.packages.${system}.tray
+              ags.packages.${system}.wireplumber
+              ags.packages.${system}.auth
+              ags.packages.${system}.network
+              ags.packages.${system}.cava
+              ags.packages.${system}.greet
+              ags.packages.${system}.hyprland
+              ags.packages.${system}.river
+              ags.packages.${system}.apps
+              pkgs.playerctl
             ];
           })
         ];
