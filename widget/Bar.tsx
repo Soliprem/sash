@@ -214,6 +214,8 @@ export default function Bar(monitor: Gdk.Monitor) {
   return (
     <window
       className="Bar"
+      name="Bar"
+      namespace="Bar"
       margin={8}
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
