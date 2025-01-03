@@ -81,8 +81,14 @@ function AudioSlider() {
   );
 }
 
-function Separator(space: number) {
-  return <label heightRequest={space} label="—" css="margin: 0px;" />;
+function Separator(space: number, separator = "—") {
+  return (
+    <label
+      heightRequest={space}
+      label={separator}
+      css="margin: 0px; padding: 0;"
+    />
+  );
 }
 
 function BatteryLevel() {
@@ -116,7 +122,13 @@ function Media() {
             }}
           />
         ) : (
-          "ツ"
+          <button
+            className="Cover"
+            halign={Gtk.Align.CENTER}
+            onClicked="spotify"
+          >
+            ツ
+          </button>
         ),
       )}
     </box>
@@ -172,6 +184,30 @@ function Time({ format = "%H:%M - %A %e." }) {
   );
 }
 
+function BigTime({ format = "%H:%M - %A %e." }) {
+  const time = Variable<string>("").poll(
+    1000,
+    () => GLib.DateTime.new_now_local().format(format)!,
+  );
+
+  return (
+    <label className="BigTime" onDestroy={() => time.drop()} label={time()} />
+  );
+}
+
+function TimeWidget() {
+  return (
+    <button className="Launcher" onClicked="zen nc.soliprem.eu/apps/calendar">
+      <box vertical>
+        <Time format="%d/%m" />
+        <BigTime format="%H" />
+        <BigTime format="%M" />
+        <Time format="%Y" />
+      </box>
+    </button>
+  );
+}
+
 export default function Bar(monitor: Gdk.Monitor) {
   const { TOP, BOTTOM, RIGHT } = Astal.WindowAnchor;
 
@@ -199,9 +235,7 @@ export default function Bar(monitor: Gdk.Monitor) {
           {Separator(10)}
           <BatteryLevel />
           {Separator(10)}
-          <Time format="%H" />
-          <Time format="%M" />
-          {Separator(10)}
+          <TimeWidget />
         </box>
       </centerbox>
     </window>
