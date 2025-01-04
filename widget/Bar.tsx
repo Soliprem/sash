@@ -101,6 +101,7 @@ function Separator(space: number, separator = "—") {
     <label
       heightRequest={space}
       label={separator}
+      className="separator"
       css="margin: 0px; padding: 0;"
     />
   );
@@ -129,20 +130,19 @@ function Media() {
           <button
             className="Cover"
             halign={Gtk.Align.CENTER}
-            css={bind(ps[0], "coverArt").as(
-              (cover) => `background-image: url('${cover}');`,
-            )}
             onClicked={() => {
               App.toggle_window("player");
             }}
-          />
+          >
+            🎵
+          </button>
         ) : (
           <button
             className="Cover"
             halign={Gtk.Align.CENTER}
             onClicked="spotify"
           >
-            ツ
+            🔇
           </button>
         ),
       )}
@@ -243,6 +243,8 @@ export default function Bar(monitor: Gdk.Monitor) {
           <Workspaces />
         </box>
         <box vertical>
+          <TimeWidget />
+          {Separator(10)}
           <Media />
         </box>
         <box vertical vexpand valign={Gtk.Align.END}>
@@ -253,8 +255,6 @@ export default function Bar(monitor: Gdk.Monitor) {
           <AudioSlider />
           {Separator(10)}
           <BatteryLevel />
-          {Separator(10)}
-          <TimeWidget />
         </box>
       </centerbox>
     </window>
