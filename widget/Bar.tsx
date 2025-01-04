@@ -6,6 +6,7 @@ import Battery from "gi://AstalBattery";
 import Wp from "gi://AstalWp";
 import Network from "gi://AstalNetwork";
 import Tray from "gi://AstalTray";
+import Bluetooth from "gi://AstalBluetooth";
 
 function Launcher() {
   return (
@@ -44,12 +45,26 @@ function SysTray() {
   );
 }
 
+function BluetoothButton() {
+  const bluetooth = Bluetooth.get_default();
+  const isPowered = bind(bluetooth, "isPowered");
+  return (
+    <button
+      visible={isPowered.as(Boolean)}
+      className="iconButton"
+      onClicked="overskride"
+    >
+      󰂯
+    </button>
+  );
+}
+
 function Wifi() {
   const network = Network.get_default();
   const wifi = bind(network, "wifi");
 
   return (
-    <box vertical visible={wifi.as(Boolean)}>
+    <button visible={wifi.as(Boolean)} onClicked="ghostty -e nmtui">
       {wifi.as(
         (wifi) =>
           wifi && (
@@ -60,7 +75,7 @@ function Wifi() {
             />
           ),
       )}
-    </box>
+    </button>
   );
 }
 
@@ -233,6 +248,7 @@ export default function Bar(monitor: Gdk.Monitor) {
         <box vertical vexpand valign={Gtk.Align.END}>
           <SysTray />
           <Wifi />
+          <BluetoothButton />
           {Separator(10)}
           <AudioSlider />
           {Separator(10)}
