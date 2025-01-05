@@ -9,8 +9,8 @@ App.start({
   css: style,
   main() {
     App.get_monitors().map(Bar);
-    App.get_monitors().map(MprisPlayers);
     App.get_monitors().map(NotificationPopups);
+    MprisPlayers();
     Applauncher();
   },
 });

@@ -91,14 +91,13 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
   );
 }
 
-export default function MprisPlayers(gdkmonitor: Gdk.Monitor) {
+export default function MprisPlayers() {
   const mpris = Mpris.get_default();
   return (
     <window
       name="player"
       anchor={Astal.WindowAnchor.RIGHT}
       application={App}
-      gdkmonitor={gdkmonitor}
       visible={false}
       onKeyPressEvent={function (self, event: Gdk.Event) {
         if (event.get_keyval()[1] === Gdk.KEY_Escape) self.hide();
