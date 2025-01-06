@@ -1,0 +1,56 @@
+@use "vars" as *;
+
+.iconButton {
+  all: unset;
+  background-color: $bg-color;
+  color: $fg-color;
+  padding: 4px 4px 4px 2px;
+  border: none;
+  min-height: 25px;
+  min-width: 30px;
+  border-radius: 8px;
+}
+
+.iconButton:hover {
+  background-color: $bg-hover;
+}
+
+.warningIconButton {
+  all: unset;
+  background-color: $bg-color;
+  color: $error;
+  padding: 4px 4px 4px 2px;
+  border: none;
+  min-height: 25px;
+  min-width: 30px;
+  border-radius: 8px;
+}
+
+.warningIconButton:hover {
+  background-color: $bg-hover;
+}
+
+.primaryButton {
+  all: unset;
+  background-color: $button-accent;
+  color: $fg-color;
+  border-radius: 8px;
+  padding: 4px 8px 4px 8px;
+}
+
+.primaryButton:hover {
+  background-color: $bg-hover;
+}
+
+.transparentButton {
+  all: unset;
+  background-color: transparent;
+  color: $fg-color;
+  border-radius: 8px;
+  padding: 4px 8px 4px 8px;
+}
+
+.transparentButton:hover {
+  background-color: $bg-hover;
+}
+

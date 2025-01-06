@@ -1,0 +1,18 @@
+@use "vars" as *;
+
+.window {
+    background-color: $bg-color;
+    border-radius: 8px;
+    border-color: $accent;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.focusedWindow {
+    background-color: $bg-color;
+    border-radius: 8px;
+    border-color: $fg-color;
+    border-width: 2px;
+    border-style: solid;
+}
+

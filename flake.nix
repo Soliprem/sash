@@ -41,6 +41,8 @@
           ags.packages.${system}.hyprland
           ags.packages.${system}.river
           ags.packages.${system}.apps
+          ags.packages.${system}.astal4
+          ags.packages.${system}.astal3
           pkgs.playerctl
           # pkgs.fzf
         ];
@@ -67,6 +69,8 @@
               ags.packages.${system}.hyprland
               ags.packages.${system}.river
               ags.packages.${system}.apps
+              ags.packages.${system}.astal4
+              ags.packages.${system}.astal3
               pkgs.playerctl
             ];
           })

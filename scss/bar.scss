@@ -1,0 +1,116 @@
+@use "vars" as *;
+@use "sass:color";
+window.Bar {
+  border: none;
+  border-radius: $radius;
+  box-shadow: none;
+  background-color: $bg-color;
+  color: $fg-color;
+  font-size: 1.2em;
+  font-weight: bold;
+
+  .Launcher {
+    margin: 5px 0px;
+    padding: 0rem 0rem;
+  }
+
+  button {
+    background-color: transparent;
+  }
+
+  .Workspaces {
+    button {
+      all: unset;
+      background-color: transparent;
+
+      &:hover label {
+        background-color: color.adjust($fg-color, $alpha: -0.84);
+        border-color: color.adjust($accent, $alpha: -0.8);
+      }
+
+      &:active label {
+        background-color: color.adjust($fg-color, $alpha: -0.8);
+      }
+    }
+
+    label {
+      transition: 200ms;
+      padding: 0 2px;
+      margin: 2px;
+      border-radius: $radius;
+      border: 1pt solid transparent;
+    }
+
+    .focused label {
+      color: $accent;
+      border-color: $accent;
+    }
+  }
+
+  .SysTray {
+    margin-bottom: 0px;
+
+    button {
+      padding: 0 1px;
+    }
+  }
+
+  .FocusedClient {
+    color: $accent;
+  }
+
+  .Media .Cover {
+    /* min-height: 1.2em; */
+    /* min-width: 1.2em; */
+    border-radius: $radius;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .BigTime {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .Time {
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  .Battery {
+    margin: 5px;
+  }
+
+  .AudioSlider {
+    * {
+      all: unset;
+    }
+
+    icon {
+      margin-top: 0.6em;
+    }
+
+    & {
+      margin: 0 0;
+    }
+
+    trough {
+      background-color: color.adjust($fg-color, $alpha: -0.8);
+      border-radius: $radius;
+    }
+
+    highlight {
+      background-color: $accent;
+      min-height: 0.8em;
+      border-radius: $radius;
+    }
+
+    slider {
+      background-color: $fg-color;
+      border-radius: $radius;
+      min-height: 1em;
+      min-width: 1em;
+      margin: -0.2em;
+    }
+  }
+}

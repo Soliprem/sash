@@ -1,0 +1,7 @@
+@use "vars" as *;
+
+.divider {
+  border: 2px solid $bg-hover;
+  border-radius: 8px;
+}
+

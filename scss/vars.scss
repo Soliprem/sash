@@ -1,0 +1,12 @@
+@use "sass:string";
+$bg-color: #212223;
+$bg-hover: #2E383C;
+$fg-color: #f1f1f1;
+$accent: #408df7;
+$button-accent: #378df8;
+$radius: 7px;
+$error: red;
+
+@function gtkalpha($c, $a) {
+  @return string.unquote("alpha(#{$c},#{$a})");
+}

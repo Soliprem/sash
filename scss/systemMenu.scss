@@ -1,0 +1,71 @@
+@use "vars" as *;
+
+.systemMenuIconButton {
+  all: unset;
+  background-color: transparent;
+  min-width: 30px;
+  font-size: 25px;
+  margin: 0 10px 0 0;
+  border-radius: 16px;
+  padding: 10px 15px 10px 15px;
+  color: $fg-color;
+  border: 0;
+}
+
+.systemMenuIconButton:hover {
+  background-color: $bg-hover;
+}
+
+.systemMenuVolumeProgress {
+  all: unset;
+  min-width: 200px;
+  margin-right: 20px;
+}
+
+.systemMenuVolumeProgress trough {
+  all: unset;
+  background: $bg-hover;
+  min-height: 8px;
+  border-radius: 16px;
+}
+
+.systemMenuVolumeProgress trough slider {
+  all: unset;
+}
+
+.systemMenuVolumeProgress trough highlight {
+  all: unset;
+  min-width: 8px;
+  border-radius: 16px;
+  background: $fg-color;
+}
+
+.row {
+  margin: 0 20px 0 20px;
+}
+
+.rowRevealer {
+  padding: 6px 30px 6px 30px;
+}
+
+.themeButton {
+  all: unset;
+  background-color: transparent;
+  font-size: 25px;
+  border-radius: 16px;
+  color: $fg-color;
+  border: 0;
+}
+
+.themeButton:hover {
+  background-color: $bg-hover;
+}
+
+.themeButtonSelected {
+  all: unset;
+  background-color: $accent;
+  font-size: 25px;
+  border-radius: 16px;
+  color: $fg-color;
+  border: 0;
+}

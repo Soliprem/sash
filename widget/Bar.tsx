@@ -7,16 +7,21 @@ import Wp from "gi://AstalWp";
 import Network from "gi://AstalNetwork";
 import Tray from "gi://AstalTray";
 import Bluetooth from "gi://AstalBluetooth";
+import { SystemMenuWindowName } from "./systemMenu/SystemMenuWindow";
+
+function Divider({ css }: { css?: string }) {
+  return <box className="divider" css={css ? css : ""} />;
+}
 
 function Launcher() {
   return (
     <button
       className="Launcher"
       onClicked={() => {
-        App.toggle_window("launcher");
+        App.toggle_window(SystemMenuWindowName);
       }}
     >
-      🐧
+      ❄️
     </button>
   );
 }
@@ -150,26 +155,86 @@ function Media() {
   );
 }
 
-function Workspaces() {
+function groupByProperty(array: Hyprland.Workspace[]): Hyprland.Workspace[][] {
+  const map = new Map<Hyprland.Monitor, Hyprland.Workspace[]>();
+
+  array.forEach((item) => {
+    const key = item.monitor;
+    if (key === null) {
+      return;
+    }
+    if (!map.has(key)) {
+      map.set(key, []);
+    }
+    map.get(key)!.unshift(item);
+  });
+
+  return Array.from(map.values()).sort((a, b) => {
+    return a[0].monitor.id - b[0].monitor.id;
+  });
+}
+
+// function Workspaces() {
+//   const hypr = Hyprland.get_default();
+//
+//   return (
+//     <box vertical className="Workspaces">
+//       {bind(hypr, "workspaces").as((wss) =>
+//         wss
+//           .filter((ws) => !(ws.id >= -99 && ws.id <= -2)) // filter out special workspaces
+//           .sort((a, b) => a.id - b.id)
+//           .map((ws) => (
+//             <button
+//               className={bind(hypr, "focusedWorkspace").as((fw) =>
+//                 ws === fw ? "focused" : "",
+//               )}
+//               onClicked={() => ws.focus()}
+//             >
+//               {ws.id}
+//             </button>
+//           )),
+//       )}
+//     </box>
+//   );
+// }
+
+export function Workspaces() {
   const hypr = Hyprland.get_default();
 
   return (
-    <box vertical className="Workspaces">
-      {bind(hypr, "workspaces").as((wss) =>
-        wss
-          .filter((ws) => !(ws.id >= -99 && ws.id <= -2)) // filter out special workspaces
-          .sort((a, b) => a.id - b.id)
-          .map((ws) => (
-            <button
-              className={bind(hypr, "focusedWorkspace").as((fw) =>
-                ws === fw ? "focused" : "",
-              )}
-              onClicked={() => ws.focus()}
-            >
-              {ws.id}
-            </button>
-          )),
-      )}
+    <box vertical>
+      {bind(hypr, "workspaces").as((workspaces) => {
+        const groupedWorkspaces = groupByProperty(workspaces);
+        return groupedWorkspaces.map((workspaceGroup, index) => {
+          return (
+            <box vertical className="Workspaces">
+              {index > 0 && index < groupedWorkspaces.length && <Divider />}
+              {workspaceGroup
+                .filter(
+                  (workspace) => !(workspace.id >= -99 && workspace.id <= -2),
+                ) // filter out special workspaces
+                .sort((a, b) => {
+                  return a.id - b.id;
+                })
+                .map((workspace) => (
+                  <button
+                    // to have balls for labels. I prefer numbers
+                    // label={bind(workspace.monitor, "activeWorkspace").as(
+                    //   (activeWorkspace) =>
+                    //     activeWorkspace.id == workspace.id ? "" : "",
+                    // )}
+                    className={bind(workspace.monitor, "activeWorkspace").as(
+                      (active) => (workspace.id === active.id ? "focused" : ""),
+                    )}
+                    onClicked={() => workspace.focus()}
+                  >
+                    {workspace.id}
+                  </button>
+                ))}
+            </box>
+          );
+        });
+      })}
     </box>
   );
 }

@@ -1,0 +1,101 @@
+@use "vars" as *;
+
+.mediaPlayersContainer {
+  margin: 0 20px 0 20px;
+}
+
+.mediaPlayer {
+  margin-top: 20px;
+  background-color: $bg-color;
+  border: 2px solid $bg-hover;
+  border-radius: 8px;
+  padding: 4px;
+
+  .controlButton {
+    all: unset;
+    background-color: $bg-color;
+    color: $fg-color;
+    padding: 4px 4px 4px 2px;
+    border: none;
+    min-height: 25px;
+    min-width: 30px;
+    border-radius: 8px;
+  }
+
+  .controlButton:hover {
+    background-color: $bg-hover;
+  }
+
+  .seekContainer {
+    margin: 10px 0 10px 0;
+  }
+
+  .seek {
+    margin: 0 20px 0 20px;
+
+    trough {
+      background: $bg-hover;
+      min-height: 4px;
+      border-radius: 8px;
+
+      slider {
+        color: $accent;
+        background: $bg-color;
+      }
+
+      highlight {
+        background: $accent;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+box.MediaPlayer {
+  padding: 0.6rem;
+  background-color: $bg-color;
+
+  box.cover-art {
+    min-width: 120px;
+    min-height: 120px;
+    border-radius: 9px;
+    margin-right: 0.6rem;
+    background-size: contain;
+    background-position: center;
+  }
+
+  box.title {
+    label {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  }
+
+  scale {
+    padding: 0;
+    margin: 0.4rem 0;
+
+    trough {
+      min-height: 8px;
+    }
+
+    highlight {
+      background-color: $fg-color;
+    }
+
+    slider {
+      all: unset;
+    }
+  }
+
+  centerbox.actions {
+    min-width: 220px;
+
+    button {
+      min-width: 0;
+      min-height: 0;
+      padding: 0.4rem;
+      margin: 0 0.2rem;
+    }
+  }
+}
