@@ -12,14 +12,14 @@ export default function () {
             label="󰍃"
             onClicked={() => {
                 App.toggle_window(SystemMenuWindowName)
-                execAsync("hyprctl dispatch quit")
+                execAsync("loginctl terminate-session")
             }}/>
         <button
             className="systemMenuIconButton"
             label=""
             onClicked={() => {
                 App.toggle_window(SystemMenuWindowName)
-                execAsync("hyprlock --immediate")
+                execAsync("loginctl lock-session")
             }}/>
         <button
             className="systemMenuIconButton"
