@@ -8,6 +8,7 @@ import Network from "gi://AstalNetwork";
 import Tray from "gi://AstalTray";
 import Bluetooth from "gi://AstalBluetooth";
 import { SystemMenuWindowName } from "./systemMenu/SystemMenuWindow";
+import { CircularProgress } from "astal/gtk3/widget";
 
 function Divider({ css }: { css?: string }) {
   return <box className="divider" css={css ? css : ""} />;
@@ -112,16 +113,53 @@ function Separator(space: number, separator = "—") {
   );
 }
 
-function BatteryLevel() {
-  const bat = Battery.get_default();
+function Volume() {
+  const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 
   return (
-    <box vertical className="Battery" visible={bind(bat, "isPresent")}>
-      <icon icon={bind(bat, "batteryIconName")} />
-      <label
-        label={bind(bat, "percentage").as((p) => `${Math.floor(p * 100)}%`)}
-      />
-    </box>
+    <eventbox
+      onScroll={(_, { delta_y }) => {
+        const volumeChange = delta_y < 0 ? 0.05 : -0.05;
+        speaker?.set_volume(speaker.volume + volumeChange);
+        speaker?.set_mute(false);
+      }}
+      onClick={(_) => speaker?.set_mute(!speaker.get_mute())}
+    >
+      <CircularProgress
+        className="CircleIndicator"
+        value={bind(speaker, "volume")}
+        startAt={0.75}
+        endAt={0.75}
+        rounded
+        child={<icon icon={bind(speaker, "volumeIcon")} />}
+      ></CircularProgress>
+    </eventbox>
+  );
+}
+
+function BatteryLevel() {
+  // const bat = Battery.get_default();
+  //
+  // return (
+  //   <box vertical className="Battery" visible={bind(bat, "isPresent")}>
+  //     <icon icon={bind(bat, "batteryIconName")} />
+  //     <label
+  //       label={bind(bat, "percentage").as((p) => `${Math.floor(p * 100)}%`)}
+  //     />
+  //   </box>
+  // );
+  const battery = Battery.get_default();
+
+  return (
+    <CircularProgress
+      visible={bind(battery, "isPresent")}
+      className="CircleIndicator"
+      value={bind(battery, "percentage").as((p: number) => p)}
+      startAt={0.75}
+      endAt={0.75}
+      rounded
+      child={<label css={"font-size: 16px;"} label={"󱐌"} />}
+    ></CircularProgress>
   );
 }
 
@@ -317,7 +355,7 @@ export default function Bar(monitor: Gdk.Monitor) {
           <Wifi />
           <BluetoothButton />
           {Separator(10)}
-          <AudioSlider />
+          <Volume />
           {Separator(10)}
           <BatteryLevel />
         </box>

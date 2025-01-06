@@ -113,4 +113,11 @@ window.Bar {
       margin: -0.2em;
     }
   }
+  .CircleIndicator {
+    font-size: 0.15em;
+    icon {
+      font-size: 1rem;
+      margin: 5px;
+    }
+  }
 }
