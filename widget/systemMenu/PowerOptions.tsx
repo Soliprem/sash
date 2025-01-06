@@ -12,7 +12,7 @@ export default function () {
             label="󰍃"
             onClicked={() => {
                 App.toggle_window(SystemMenuWindowName)
-                execAsync("loginctl terminate-session")
+                execAsync("loginctl terminate-session $(loginctl session-status | head -n1 | cut -d' ' -f1)")
             }}/>
         <button
             className="systemMenuIconButton"
