@@ -12,14 +12,14 @@ export default function () {
             label="󰍃"
             onClicked={() => {
                 App.toggle_window(SystemMenuWindowName)
-                execAsync("uwsm stop")
+                execAsync("hyprctl dispatch quit")
             }}/>
         <button
             className="systemMenuIconButton"
             label=""
             onClicked={() => {
                 App.toggle_window(SystemMenuWindowName)
-                execAsync("uwsm app -- hyprlock")
+                execAsync("hyprlock --immediate")
             }}/>
         <button
             className="systemMenuIconButton"
