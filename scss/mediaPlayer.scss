@@ -1,19 +1,25 @@
 @use "vars" as *;
+@use "sass:color";
 
 .mediaPlayersContainer {
   margin: 0 20px 0 20px;
 }
 
 .mediaPlayer {
-  margin-top: 20px;
   background-color: $bg-color;
   border: 2px solid $bg-hover;
   border-radius: 8px;
-  padding: 4px;
+
+}
+
+.mediaOverlay {
+  padding: 0.4rem;
+  background-color: color.adjust($bg-color, $alpha: -0.2);
+  border: $bg-hover;
 
   .controlButton {
     all: unset;
-    background-color: $bg-color;
+    background-color: transparent;
     color: $fg-color;
     padding: 4px 4px 4px 2px;
     border: none;

@@ -17,7 +17,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
   const coverArt = bind(player, "coverArt").as(
     (c) => `background-image: url('${c}')`,
   );
-         
+
   const artist = bind(player, "artist").as((a) => a || "Unknown Artist");
 
   // player.position will keep changing even when the player is paused.  This is a workaround
@@ -33,110 +33,115 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
   );
 
   return (
-    <box className="mediaPlayer" vertical={true}>
-      <label
-        className="labelSmallBold"
-        truncate={true}
-        halign={CENTER}
-        label={title}
-      />
-      <label
-        className="labelSmall"
-        truncate={true}
-        halign={CENTER}
-        label={artist}
-      />
-      <box className="seekContainer" vertical={false}>
+    <box className="mediaPlayer" css={coverArt}>
+      <box
+        className="mediaOverlay"
+        vertical={true}
+      >
         <label
-          className="labelSmall"
-          halign={START}
-          visible={bind(player, "length").as((l) => l > 0)}
-          label={realPosition().as(lengthStr)}
-        />
-        <slider
-          className="seek"
-          hexpand={true}
-          visible={bind(player, "length").as((l) => l > 0)}
-          onDragged={({ value }) => {
-            player.position = value * player.length;
-            realPosition.set(player.position);
-          }}
-          value={realPosition().as((position) => {
-            return player.length > 0 ? position / player.length : 0;
-          })}
+          className="labelSmallBold"
+          truncate={true}
+          halign={CENTER}
+          label={title}
         />
         <label
           className="labelSmall"
-          halign={END}
-          visible={bind(player, "length").as((l) => l > 0)}
-          label={bind(player, "length").as((l) =>
-            l > 0 ? lengthStr(l) : "0:00",
-          )}
+          truncate={true}
+          halign={CENTER}
+          label={artist}
         />
-      </box>
-      <box halign={CENTER}>
-        <button
-          className="controlButton"
-          onClicked={() => {
-            if (player.shuffleStatus === Mpris.Shuffle.ON) {
-              player.set_shuffle_status(Mpris.Shuffle.OFF);
-            } else {
-              player.set_shuffle_status(Mpris.Shuffle.ON);
-            }
-          }}
-          visible={bind(player, "shuffleStatus").as(
-            (shuffle) => shuffle !== Mpris.Shuffle.UNSUPPORTED,
-          )}
-          label={bind(player, "shuffleStatus").as((shuffle) => {
-            if (shuffle === Mpris.Shuffle.ON) {
-              return "";
-            } else {
-              return "󰒞";
-            }
-          })}
-        />
-        <button
-          className="controlButton"
-          onClicked={() => player.previous()}
-          visible={bind(player, "canGoPrevious")}
-          label=""
-        />
-        <button
-          className="controlButton"
-          onClicked={() => player.play_pause()}
-          visible={bind(player, "canControl")}
-          label={playIcon}
-        />
-        <button
-          className="controlButton"
-          onClicked={() => player.next()}
-          visible={bind(player, "canGoNext")}
-          label=""
-        />
-        <button
-          className="controlButton"
-          onClicked={() => {
-            if (player.loopStatus === Mpris.Loop.NONE) {
-              player.set_loop_status(Mpris.Loop.PLAYLIST);
-            } else if (player.loopStatus === Mpris.Loop.PLAYLIST) {
-              player.set_loop_status(Mpris.Loop.TRACK);
-            } else {
-              player.set_loop_status(Mpris.Loop.NONE);
-            }
-          }}
-          visible={bind(player, "loopStatus").as(
-            (status) => status !== Mpris.Loop.UNSUPPORTED,
-          )}
-          label={bind(player, "loopStatus").as((status) => {
-            if (status === Mpris.Loop.NONE) {
-              return "󰑗";
-            } else if (status === Mpris.Loop.PLAYLIST) {
-              return "󰑖";
-            } else {
-              return "󰑘";
-            }
-          })}
-        />
+        <box className="seekContainer" vertical={false}>
+          <label
+            className="labelSmall"
+            halign={START}
+            visible={bind(player, "length").as((l) => l > 0)}
+            label={realPosition().as(lengthStr)}
+          />
+          <slider
+            className="seek"
+            hexpand={true}
+            visible={bind(player, "length").as((l) => l > 0)}
+            onDragged={({ value }) => {
+              player.position = value * player.length;
+              realPosition.set(player.position);
+            }}
+            value={realPosition().as((position) => {
+              return player.length > 0 ? position / player.length : 0;
+            })}
+          />
+          <label
+            className="labelSmall"
+            halign={END}
+            visible={bind(player, "length").as((l) => l > 0)}
+            label={bind(player, "length").as((l) =>
+              l > 0 ? lengthStr(l) : "0:00",
+            )}
+          />
+        </box>
+        <box halign={CENTER}>
+          <button
+            className="controlButton"
+            onClicked={() => {
+              if (player.shuffleStatus === Mpris.Shuffle.ON) {
+                player.set_shuffle_status(Mpris.Shuffle.OFF);
+              } else {
+                player.set_shuffle_status(Mpris.Shuffle.ON);
+              }
+            }}
+            visible={bind(player, "shuffleStatus").as(
+              (shuffle) => shuffle !== Mpris.Shuffle.UNSUPPORTED,
+            )}
+            label={bind(player, "shuffleStatus").as((shuffle) => {
+              if (shuffle === Mpris.Shuffle.ON) {
+                return "";
+              } else {
+                return "󰒞";
+              }
+            })}
+          />
+          <button
+            className="controlButton"
+            onClicked={() => player.previous()}
+            visible={bind(player, "canGoPrevious")}
+            label=""
+          />
+          <button
+            className="controlButton"
+            onClicked={() => player.play_pause()}
+            visible={bind(player, "canControl")}
+            label={playIcon}
+          />
+          <button
+            className="controlButton"
+            onClicked={() => player.next()}
+            visible={bind(player, "canGoNext")}
+            label=""
+          />
+          <button
+            className="controlButton"
+            onClicked={() => {
+              if (player.loopStatus === Mpris.Loop.NONE) {
+                player.set_loop_status(Mpris.Loop.PLAYLIST);
+              } else if (player.loopStatus === Mpris.Loop.PLAYLIST) {
+                player.set_loop_status(Mpris.Loop.TRACK);
+              } else {
+                player.set_loop_status(Mpris.Loop.NONE);
+              }
+            }}
+            visible={bind(player, "loopStatus").as(
+              (status) => status !== Mpris.Loop.UNSUPPORTED,
+            )}
+            label={bind(player, "loopStatus").as((status) => {
+              if (status === Mpris.Loop.NONE) {
+                return "󰑗";
+              } else if (status === Mpris.Loop.PLAYLIST) {
+                return "󰑖";
+              } else {
+                return "󰑘";
+              }
+            })}
+          />
+        </box>
       </box>
     </box>
   );
