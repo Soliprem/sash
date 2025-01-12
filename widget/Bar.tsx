@@ -1,5 +1,5 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3";
-import { Variable, GLib, bind } from "astal";
+import { Variable, GLib, bind, execAsync } from "astal";
 import Hyprland from "gi://AstalHyprland";
 import Mpris from "gi://AstalMpris";
 import Battery from "gi://AstalBattery";
@@ -112,6 +112,29 @@ function Separator(space: number, separator = "—") {
     />
   );
 }
+
+// function Brightness() {
+//   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
+//
+//   return (
+//     <eventbox
+//       onScroll={(_, { delta_y }) => {
+//         const brightnessChange = delta_y < 0 ? 5 : -5;
+//         execAsync("brightnessctl s" + brightnessChange);
+//       }}
+//       onClick={(_) => speaker?.set_mute(!speaker.get_mute())}
+//     >
+//       <CircularProgress
+//         className="CircleIndicator"
+//         value={bind(speaker, "volume")}
+//         startAt={0.75}
+//         endAt={0.75}
+//         rounded
+//         child={<icon icon={bind(speaker, "volumeIcon")} />}
+//       ></CircularProgress>
+//     </eventbox>
+//   );
+// }
 
 function Volume() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
@@ -315,7 +338,12 @@ function BigTime({ format = "%H:%M - %A %e." }) {
 
 function TimeWidget() {
   return (
-    <button className="Launcher" onClicked="zen nc.soliprem.eu/apps/calendar">
+    <button
+      className="Launcher"
+      onClicked={() => {
+        App.toggle_window("calendarWindow");
+      }}
+    >
       <box vertical>
         <Time format="%d/%m" />
         <BigTime format="%H" />
@@ -347,8 +375,8 @@ export default function Bar(monitor: Gdk.Monitor) {
         </box>
         <box vertical>
           <TimeWidget />
-          {Separator(10)}
-          <Media />
+          {/*Separator(10)/*}
+          {/*<Media />*/}
         </box>
         <box vertical vexpand valign={Gtk.Align.END}>
           <SysTray />

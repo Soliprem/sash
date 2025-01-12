@@ -10,6 +10,7 @@ import {
   VolumeAlert,
   BrightnessAlert,
 } from "./widget/Alerts";
+import Calendar from "./widget/Calendar";
 
 App.start({
   css: style,
@@ -22,5 +23,6 @@ App.start({
     MprisPlayers();
     Applauncher();
     SystemMenuWindow();
+    Calendar();
   },
 });
