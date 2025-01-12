@@ -9,6 +9,7 @@
   background-color: $bg-color;
   border: 2px solid $bg-hover;
   border-radius: 8px;
+  margin-top: 20px;
 
 }
 
@@ -57,6 +58,8 @@
   }
 }
 
+
+// Old Media Player (currently unused, but you never know)
 box.MediaPlayer {
   padding: 0.6rem;
   background-color: $bg-color;
