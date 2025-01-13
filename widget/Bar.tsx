@@ -265,7 +265,7 @@ export function Workspaces() {
   return (
     <box vertical>
       {bind(hypr, "workspaces").as((workspaces) => {
-        const groupedWorkspaces = groupByProperty(workspaces);
+        const groupedWorkspaces = groupByProperty(workspaces).reverse(); //reversed because my monitor 0 is on top of my monitor 1
         return groupedWorkspaces.map((workspaceGroup, index) => {
           return (
             <box vertical className="Workspaces">
@@ -289,8 +289,9 @@ export function Workspaces() {
                     )}
                     onClicked={() => workspace.focus()}
                   >
-                    {workspace.id}
+                    {workspace.id - (groupedWorkspaces.length - index - 1) * 10}
                   </button>
+                  // TODO: Make this configurable so I can encapsulate the jank on my end
                 ))}
             </box>
           );
