@@ -72,9 +72,14 @@
               ags.packages.${system}.astal4
               ags.packages.${system}.astal3
               pkgs.playerctl
+              pkgs.nushell
             ];
           })
         ];
+        shellHook = ''
+          export SHELL=\${pkgs.fish}/bin/nushell
+          exec nu
+        '';
       };
     };
   };
