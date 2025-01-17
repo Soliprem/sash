@@ -43,7 +43,7 @@ App.start({
     MprisPlayers();
     Applauncher();
     SystemMenuWindow();
-    Calendar();
+    App.get_monitors().map(Calendar);
   },
   requestHandler(request: string, res: (response: any) => void) {
     if (request === "bars") {
