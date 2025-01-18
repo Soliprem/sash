@@ -15,7 +15,7 @@
 
 .mediaOverlay {
   padding: 0.4rem;
-  background-color: color.adjust($bg-color, $alpha: -0.2);
+  background-color: gtkalpha($bg-color, -0.2);
   border: $bg-hover;
 
   .controlButton {

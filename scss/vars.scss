@@ -1,9 +1,9 @@
 @use "sass:string";
-$bg-color: #212223;
-$bg-hover: #2E383C;
-$fg-color: #f1f1f1;
-$accent: #408df7;
-$button-accent: #378df8;
+$bg-color: #{"@window_bg_color"};
+$bg-hover: #{"@success_bg_color"};
+$fg-color: #{"@window_fg_color"};
+$accent: #{"@accent_bg_color"};
+$button-accent: #{"@carg_fg_color"};
 $radius: 7px;
 $error: red;
 

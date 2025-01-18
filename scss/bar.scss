@@ -24,12 +24,12 @@ window.Bar {
       background-color: transparent;
 
       &:hover label {
-        background-color: color.adjust($fg-color, $alpha: -0.84);
-        border-color: color.adjust($accent, $alpha: -0.8);
+        background-color: gtkalpha($fg-color, -0.84);
+        border-color: gtkalpha($accent, -0.8);
       }
 
       &:active label {
-        background-color: color.adjust($fg-color, $alpha: -0.8);
+        background-color: gtkalpha($fg-color, -0.8);
       }
     }
 
@@ -95,7 +95,7 @@ window.Bar {
     }
 
     trough {
-      background-color: color.adjust($fg-color, $alpha: -0.8);
+      background-color: gtkalpha($fg-color, -0.8);
       border-radius: $radius;
     }
 
