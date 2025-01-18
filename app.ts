@@ -25,6 +25,7 @@ function initializeBars() {
 const bars = initializeBars();
 
 App.start({
+  instanceName: "sash",
   css: style,
   main() {
     App.connect("monitor-added", (_, gdkmonitor) => {
