@@ -29,7 +29,6 @@ To-do (once exams are over):
       instead of a pretty useless gtk calendar
 - [ ] TBD (now that it's usable I'll just work on this on lost time for fun)
 
-![screenshot1](./assets/screenshots/screenshot1.png)
 ![screenshot2](./assets/screenshots/screenshot3.png)
 ![screenshot3](./assets/screenshots/screenshot4.png)
 ![screenshot4](./assets/screenshots/screenshot5.png)
