@@ -32,11 +32,11 @@ To-do (once exams are over):
 ![bar_image](./assets/screenshots/bar.png)
 ![systemMenuImage](./assets/screenshots/systemMenu.png)
 ![launcherImage](./assets/screenshots/launcher.png)
-![screenshot1](.assets/screenshots/screenshot1.png)
-![screenshot2](.assets/screenshots/screenshot3.png)
-![screenshot3](.assets/screenshots/screenshot4.png)
-![screenshot4](.assets/screenshots/screenshot5.png)
-![screenshot5](.assets/screenshots/screenshot6.png)
+![screenshot1](./assets/screenshots/screenshot1.png)
+![screenshot2](./assets/screenshots/screenshot3.png)
+![screenshot3](./assets/screenshots/screenshot4.png)
+![screenshot4](./assets/screenshots/screenshot5.png)
+![screenshot5](./assets/screenshots/screenshot6.png)
 
 ## Credits
 
