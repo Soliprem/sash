@@ -385,7 +385,7 @@ export default function Bar(monitor: Gdk.Monitor) {
           <BluetoothButton />
           {Separator(10)}
           <Volume />
-          {/*Separator(10)}
+          {/*Separator(10)*/}
           <BatteryLevel />
         </box>
       </centerbox>
