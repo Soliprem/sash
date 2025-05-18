@@ -381,11 +381,11 @@ export default function Bar(monitor: Gdk.Monitor) {
         </box>
         <box vertical vexpand valign={Gtk.Align.END}>
           <SysTray />
-          <Wifi />
+          {/*<Wifi />*/}
           <BluetoothButton />
           {Separator(10)}
           <Volume />
-          {Separator(10)}
+          {/*Separator(10)}
           <BatteryLevel />
         </box>
       </centerbox>
